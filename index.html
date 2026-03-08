@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentoria Prisma | Artur Andrade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #4a3728;
+            background: #fdf8f3;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========== COLOR TOKENS ========== */
+        :root {
+            --terracotta: #c67b5c;
+            --cream: #f5e6d3;
+            --brown: #4a3728;
+            --sage: #5c6b54;
+            --ivory: #fdf8f3;
+            --terracotta-light: #d4967d;
+            --brown-light: #6b5a4e;
+        }
+
+        /* ========== TYPOGRAPHY ========== */
+        .heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--brown);
+        }
+        .tag {
+            display: inline-block;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--terracotta);
+            margin-bottom: 1.25rem;
+        }
+        .tag::before {
+            content: '';
+            display: inline-block;
+            width: 24px;
+            height: 1px;
+            background: var(--terracotta);
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        /* ========== LAYOUT ========== */
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        .section {
+            padding: 6rem 0;
+        }
+
+        /* ========== CTA BUTTON ========== */
+        .cta {
+            display: inline-block;
+            background: var(--terracotta);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+        .cta:hover {
+            background: var(--terracotta-light);
+            transform: translateY(-1px);
+        }
+        .cta:active { transform: translateY(0); }
+
+        /* ========== DOBRA 1 — HERO ========== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--brown);
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 0;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 30% 20%, rgba(198,123,92,0.12) 0%, transparent 60%),
+                        radial-gradient(ellipse at 70% 80%, rgba(92,107,84,0.08) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            max-width: 780px;
+        }
+        .hero .tag {
+            color: var(--cream);
+            opacity: 0.8;
+        }
+        .hero .tag::before { background: var(--cream); opacity: 0.5; }
+        .hero .heading {
+            color: var(--ivory);
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            margin-bottom: 1.5rem;
+        }
+        .hero .sub {
+            color: var(--cream);
+            font-size: 1.1rem;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+            opacity: 0.85;
+        }
+
+        /* ========== DOBRA 2 — A DOR ========== */
+        .dor {
+            background: var(--ivory);
+        }
+        .dor .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 2rem;
+        }
+        .dor .body-text {
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            margin-bottom: 1.5rem;
+        }
+        .dor .body-text:last-of-type {
+            font-style: italic;
+            color: var(--sage);
+            font-weight: 500;
+        }
+        .dor .divider {
+            width: 48px;
+            height: 2px;
+            background: var(--terracotta);
+            margin: 2.5rem 0;
+            opacity: 0.5;
+        }
+
+        /* ========== DOBRA 3 — PROBLEMA ESTRUTURAL ========== */
+        .problema {
+            background: var(--cream);
+        }
+        .problema .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 2rem;
+        }
+        .problema .body-text {
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ========== DOBRA 4 — A SOLUCAO (PRISMA) ========== */
+        .solucao {
+            background: var(--brown);
+            color: var(--cream);
+        }
+        .solucao .tag { color: var(--terracotta-light); }
+        .solucao .tag::before { background: var(--terracotta-light); }
+        .solucao .heading {
+            color: var(--ivory);
+            font-size: clamp(1.8rem, 4vw, 2.6rem);
+            margin-bottom: 1.5rem;
+        }
+        .solucao .body-text {
+            color: var(--cream);
+            opacity: 0.85;
+            font-size: 1.05rem;
+            margin-bottom: 3rem;
+        }
+        .fases-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+        .fase-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(198,123,92,0.2);
+            border-radius: 8px;
+            padding: 2rem 1.5rem;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .fase-card:hover {
+            border-color: var(--terracotta);
+            background: rgba(255,255,255,0.08);
+        }
+        .fase-card .fase-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--terracotta);
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .fase-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            color: var(--ivory);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .fase-card p {
+            font-size: 0.92rem;
+            color: var(--cream);
+            opacity: 0.75;
+            line-height: 1.5;
+        }
+        .solucao .closing-text {
+            font-size: 1.05rem;
+            color: var(--cream);
+            font-style: italic;
+            opacity: 0.85;
+            margin-bottom: 2.5rem;
+            border-left: 2px solid var(--terracotta);
+            padding-left: 1.25rem;
+        }
+        .solucao .cta-wrap { text-align: center; }
+
+        /* ========== DOBRA 5 — PARA QUEM E ========== */
+        .para-quem {
+            background: var(--ivory);
+        }
+        .para-quem .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            margin-bottom: 2.5rem;
+        }
+        .checklist {
+            list-style: none;
+            margin-bottom: 3rem;
+        }
+        .checklist li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1.25rem;
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            line-height: 1.6;
+        }
+        .checklist li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.55em;
+            width: 10px;
+            height: 2px;
+            background: var(--terracotta);
+        }
+
+        /* ========== DOBRA 6 — HISTORIA ========== */
+        .historia {
+            background: var(--cream);
+        }
+        .historia .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+            margin-bottom: 2rem;
+        }
+        .historia .body-text {
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            margin-bottom: 1.5rem;
+        }
+        .historia .credentials {
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(74,55,40,0.15);
+            font-size: 0.92rem;
+            color: var(--sage);
+            line-height: 1.8;
+        }
+        .historia .signature {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--brown);
+            font-style: italic;
+            margin-top: 1rem;
+        }
+
+        /* ========== DOBRA 7 — OBJECOES ========== */
+        .objecoes {
+            background: var(--ivory);
+        }
+        .objecoes .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            margin-bottom: 2.5rem;
+        }
+        .objection-block {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(74,55,40,0.08);
+        }
+        .objection-block:last-of-type { border-bottom: none; }
+        .objection-block p {
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            line-height: 1.7;
+        }
+        .objection-block strong {
+            color: var(--brown);
+        }
+
+        /* ========== DOBRA 8 — CTA FINAL ========== */
+        .cta-final {
+            background: var(--brown);
+            text-align: center;
+            padding: 7rem 0;
+        }
+        .cta-final .heading {
+            color: var(--ivory);
+            font-size: clamp(1.6rem, 4vw, 2.6rem);
+            margin-bottom: 1.5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-final .body-text {
+            color: var(--cream);
+            opacity: 0.8;
+            font-size: 1.05rem;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ========== DOBRA 9 — FAQ ========== */
+        .faq {
+            background: var(--ivory);
+        }
+        .faq .heading {
+            font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+            margin-bottom: 2.5rem;
+        }
+        .faq-item {
+            border-bottom: 1px solid rgba(74,55,40,0.12);
+        }
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 1.5rem 2.5rem 1.5rem 0;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--brown);
+            cursor: pointer;
+            position: relative;
+            line-height: 1.5;
+        }
+        .faq-question::after {
+            content: '+';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--terracotta);
+            transition: transform 0.3s ease;
+        }
+        .faq-item.active .faq-question::after {
+            content: '\2212';
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 300px;
+            padding-bottom: 1.5rem;
+        }
+        .faq-answer p {
+            font-size: 1rem;
+            color: var(--brown-light);
+            line-height: 1.7;
+        }
+
+        /* ========== DOBRA 10 — RODAPE ========== */
+        .rodape {
+            background: var(--brown);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+        .rodape p {
+            color: var(--cream);
+            opacity: 0.5;
+            font-size: 0.85rem;
+        }
+        .rodape a {
+            color: var(--cream);
+            opacity: 0.6;
+            text-decoration: underline;
+            transition: opacity 0.2s;
+        }
+        .rodape a:hover { opacity: 1; }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .section { padding: 4rem 0; }
+            .container { padding: 0 1.5rem; }
+            .fases-grid { grid-template-columns: 1fr; }
+            .hero { min-height: auto; padding: 6rem 0; }
+            .cta-final { padding: 5rem 0; }
+        }
+
+        @media (max-width: 480px) {
+            .section { padding: 3.5rem 0; }
+            .container { padding: 0 1.25rem; }
+            .cta { padding: 0.9rem 2rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== DOBRA 1 — HERO ========== -->
+    <section class="hero">
+        <div class="container fade-in">
+            <span class="tag">Mentoria Prisma</span>
+            <h1 class="heading">Você fez tudo certo. Cresceu, entregou, liderou. E mesmo assim, algo não faz mais sentido.</h1>
+            <p class="sub">O Prisma é uma mentoria individual para líderes corporativos que chegaram longe — mas sentem que perderam a si mesmos no caminho. Método, acompanhamento real e um mentor que não apenas estudou, mas viveu a travessia.</p>
+            <a href="#lista" class="cta">Entrar na lista de espera</a>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 2 — A DOR ========== -->
+    <section class="section dor">
+        <div class="container fade-in">
+            <span class="tag">O que ninguém fala</span>
+            <h2 class="heading">Existe um tipo de crise que é silenciosa. Por fora tudo funciona, por dentro um vazio difícil de explicar.</h2>
+            <div class="divider"></div>
+            <p class="body-text">Você acorda funcional. Dá o seu melhor. Lidera. Toma decisões que afetam dezenas de pessoas. Mas quando o dia acaba, algo pesa. Um vazio que não tem nome. Um cansaço que férias não resolvem. Você já tentou mudar — de cargo, de área, talvez até de país. E o padrão voltou.</p>
+            <p class="body-text">Isso não é falta de competência. Não é ingratidão. É um sinal de que o mapa que você seguiu até aqui está incompleto.</p>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 3 — PROBLEMA ESTRUTURAL ========== -->
+    <section class="section problema">
+        <div class="container fade-in">
+            <h2 class="heading">Você já tentou mudar o que está ao redor. O que falta é olhar para dentro.</h2>
+            <p class="body-text">Mudar de cargo, de empresa, de país — nada disso resolve quando o desalinhamento é interno. O mapa que te trouxe até aqui foi competente. Mas ele só cobria uma direção: para cima.</p>
+            <p class="body-text">O que ficou de fora foi você. Sua energia. Sua identidade separada do crachá. A clareza sobre o que você quer da vida — não só da carreira.</p>
+            <p class="body-text">Completar esse mapa exige três movimentos: se estabilizar, se reconhecer e definir para onde você quer caminhar de verdade. Não com pressa. Com método.</p>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 4 — A SOLUCAO (PRISMA) ========== -->
+    <section class="section solucao">
+        <div class="container fade-in">
+            <span class="tag">O Caminho</span>
+            <h2 class="heading">Prisma: A Jornada do Líder</h2>
+            <p class="body-text">O Prisma é uma mentoria individual. Não é coaching motivacional. Não é terapia. É uma travessia estruturada em 4 fases — da clareza à direção — com acompanhamento real entre as sessões.</p>
+
+            <div class="fases-grid">
+                <div class="fase-card">
+                    <div class="fase-number">01</div>
+                    <h3>Clareza</h3>
+                    <p>Onde estou de verdade? O que está me drenando?</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-number">02</div>
+                    <h3>Consciência</h3>
+                    <p>Quem sou eu para além do crachá? Eu escolho ou reajo?</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-number">03</div>
+                    <h3>Conexão</h3>
+                    <p>O que preciso dizer? Estou presente de verdade?</p>
+                </div>
+                <div class="fase-card">
+                    <div class="fase-number">04</div>
+                    <h3>Direção</h3>
+                    <p>O que eu quero? Qual é o menor passo certo?</p>
+                </div>
+            </div>
+
+            <p class="closing-text">Não é uma hora por semana e boa sorte no resto. É um sistema que acompanha você no dia a dia — porque é no dia a dia que a transformação acontece.</p>
+
+            <div class="cta-wrap">
+                <a href="#lista" class="cta">Entrar na lista de espera</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 5 — PARA QUEM E ========== -->
+    <section class="section para-quem">
+        <div class="container fade-in">
+            <span class="tag">Isso é para você?</span>
+            <h2 class="heading">O Prisma foi desenhado para quem se reconhece aqui:</h2>
+            <ul class="checklist">
+                <li>Conquistou uma carreira sólida, mas sente um vazio que não combina com o currículo.</li>
+                <li>Já tentou mudar o que está ao redor — cargo, empresa, rotina — e o padrão voltou.</li>
+                <li>Carrega sozinho um peso que não sabe mais como explicar.</li>
+                <li>Sabe que algo precisa mudar, mas tem medo de colocar em risco o que construiu.</li>
+                <li>Quer mais do que conselhos genéricos. Quer alguém que entenda o jogo de dentro.</li>
+            </ul>
+            <a href="#lista" class="cta">Entrar na lista de espera</a>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 6 — A HISTORIA ========== -->
+    <section class="section historia">
+        <div class="container fade-in">
+            <span class="tag">Quem guia essa jornada</span>
+            <h2 class="heading">Eu não apenas estudei crise de liderança. Eu vivi.</h2>
+            <p class="body-text">Trabalhei 13 anos no corporativo, em posições de liderança em 3 países. Um dia, às dez da noite de um feriado, fechei o computador e percebi que o sonho tinha virado um tipo peculiar de pesadelo. Burnout.</p>
+            <p class="body-text">Tentei mudar tudo ao meu redor. Cargo, área, empresa, país. O padrão voltou. Então decidi enfrentar o que estava dentro. Explorei neurociência, meditação, propósito. Testei para ver o que funcionava na vida real, e documentei tudo. Criei o mapa que gostaria de ter tido.</p>
+            <p class="body-text">O Prisma nasceu disso. Não de uma certificação. De uma reconstrução real.</p>
+            <div class="credentials">
+                Pai de duas. Marido. HEC Paris. MBA FGV. Mentor. Em reconstrução contínua.
+            </div>
+            <p class="signature">— Artur Andrade</p>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 7 — OBJECOES ========== -->
+    <section class="section objecoes">
+        <div class="container fade-in">
+            <span class="tag">Uma conversa honesta</span>
+            <h2 class="heading">Antes de continuar, você precisa saber:</h2>
+            <div class="objection-block">
+                <p><strong>O Prisma não é coaching motivacional.</strong> Se você quer energia de palco e frases de efeito, esse não é o lugar.</p>
+            </div>
+            <div class="objection-block">
+                <p><strong>Não é terapia.</strong> Embora muitos mentorados relatem impactos emocionais profundos, o Prisma trabalha com método e direção, não com diagnóstico clínico.</p>
+            </div>
+            <div class="objection-block">
+                <p><strong>Não é para todo mundo.</strong> É para quem já cansou de respostas genéricas e está disposto a olhar de verdade para o que precisa mudar.</p>
+            </div>
+            <div class="objection-block">
+                <p><strong>Não é mais um curso para consumir e esquecer.</strong> Não tem módulos gravados nem comunidade genérica. É individual, presencial e construído no seu ritmo. Porque o que você precisa não é mais conteúdo — é direção.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 8 — CTA FINAL ========== -->
+    <section class="cta-final" id="lista">
+        <div class="container fade-in">
+            <h2 class="heading">Pessoas não entram em crise quando estão fracas. Entram quando já foram fortes por tempo demais.</h2>
+            <p class="body-text">Se você chegou até aqui, provavelmente não é por acaso. A lista de espera é o primeiro passo. Sem compromisso. Sem pressão. Só uma porta aberta para quando você estiver pronto.</p>
+            <a href="#lista" class="cta">Entrar na lista de espera</a>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 9 — FAQ ========== -->
+    <section class="section faq">
+        <div class="container fade-in">
+            <h2 class="heading">Perguntas que você talvez esteja se fazendo:</h2>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">O Prisma é coaching?</button>
+                <div class="faq-answer">
+                    <p>Não. É uma mentoria individual com método estruturado, sistema digital e acompanhamento contínuo. Não tem palco, não tem grupo, não tem fórmula mágica.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Preciso estar em crise para participar?</button>
+                <div class="faq-answer">
+                    <p>Não necessariamente. O Prisma também é para líderes que não estão em colapso — estão naquele ponto em que sabem que algo precisa mudar, mas ainda não têm clareza sobre o quê.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Como funciona a lista de espera?</button>
+                <div class="faq-answer">
+                    <p>Ao entrar na lista, você será contatado quando uma vaga estiver disponível. O primeiro passo é uma Sessão de Clareza — uma conversa para entender se o Prisma faz sentido para você.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">Qual é o investimento?</button>
+                <div class="faq-answer">
+                    <p>O valor é discutido na Sessão de Clareza. É um programa high ticket, individual. O investimento reflete a profundidade e a dedicação do processo.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" aria-expanded="false">E se eu não tiver certeza de que é para mim?</button>
+                <div class="faq-answer">
+                    <p>Esse é exatamente o ponto de partida da maioria dos mentorados. A Sessão de Clareza existe para isso — você entende todo o processo antes de se comprometer.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== DOBRA 10 — RODAPE ========== -->
+    <footer class="rodape">
+        <div class="container">
+            <p>Artur Andrade &nbsp;|&nbsp; Mentoria Prisma</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="#">Política de Privacidade</a> &nbsp;&middot;&nbsp; <a href="#">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                var item = this.parentElement;
+                var isActive = item.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.faq-item').forEach(function(el) {
+                    el.classList.remove('active');
+                    el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                });
+
+                // Toggle current
+                if (!isActive) {
+                    item.classList.add('active');
+                    this.setAttribute('aria-expanded', 'true');
+                }
+            });
+        });
+
+        // Scroll fade-in animation
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-in').forEach(function(el) {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
