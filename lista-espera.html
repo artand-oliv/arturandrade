@@ -251,7 +251,7 @@
     <!-- ========== FORM CONTENT ========== -->
     <main class="page-content fade-in">
         <h1 class="heading">Você chegou até aqui por um motivo.</h1>
-        <p class="sub-text">Preencha o formulário abaixo para entrar na lista de espera do Prisma. As vagas são limitadas e individuais. Suas respostas me ajudam a entender se o Prisma faz sentido para você — e a preparar a nossa primeira conversa.</p>
+        <p class="sub-text">Preencha o formulário abaixo para entrar na lista de espera do Prisma. As vagas são limitadas. Suas respostas me ajudam a entender se o Prisma faz sentido para você — e a preparar a nossa primeira conversa.</p>
 
         <form id="prisma-form" novalidate>
             <div class="form-group">
@@ -371,7 +371,7 @@
             };
 
             // Send to N8N webhook
-            fetch('https://webhook.tikitim.cloud/webhook-test/lista-espera', {
+            fetch('https://webhook.tikitim.cloud/webhook/lista-espera', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
