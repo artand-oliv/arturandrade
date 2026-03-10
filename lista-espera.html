@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Espera | Mentoria Prisma</title>
+
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MHH2P9VL');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ========== RESET & BASE ========== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #4a3728;
+            background: #fdf8f3;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { text-decoration: none; color: inherit; }
+
+        /* ========== COLOR TOKENS ========== */
+        :root {
+            --terracotta: #c67b5c;
+            --cream: #f5e6d3;
+            --brown: #4a3728;
+            --sage: #5c6b54;
+            --ivory: #fdf8f3;
+            --terracotta-light: #d4967d;
+            --brown-light: #6b5a4e;
+        }
+
+        /* ========== HEADER ========== */
+        .header {
+            padding: 1.5rem 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(74,55,40,0.08);
+        }
+        .header a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--brown);
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+        .header a:hover { opacity: 1; }
+
+        /* ========== MAIN CONTENT ========== */
+        .page-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 4rem 2rem 3rem;
+        }
+
+        .heading {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 500;
+            line-height: 1.25;
+            color: var(--brown);
+            font-size: clamp(1.8rem, 4vw, 2.4rem);
+            margin-bottom: 1.25rem;
+        }
+        .sub-text {
+            font-size: 1.05rem;
+            color: var(--brown-light);
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        /* ========== FORM ========== */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--brown);
+            margin-bottom: 0.5rem;
+        }
+        .form-group label .required {
+            color: var(--terracotta);
+            margin-left: 2px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group textarea {
+            width: 100%;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            color: var(--brown);
+            background: #fff;
+            border: 1px solid rgba(74,55,40,0.18);
+            border-radius: 4px;
+            padding: 0.85rem 1rem;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--terracotta);
+            box-shadow: 0 0 0 3px rgba(198,123,92,0.1);
+        }
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--brown-light);
+            opacity: 0.5;
+        }
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .char-count {
+            font-size: 0.75rem;
+            color: var(--brown-light);
+            opacity: 0.5;
+            text-align: right;
+            margin-top: 0.25rem;
+        }
+
+        /* ========== CHECKBOX ========== */
+        .checkbox-group {
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            margin-top: 2px;
+            accent-color: var(--terracotta);
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        .checkbox-group label {
+            font-size: 0.9rem;
+            color: var(--brown-light);
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        /* ========== CTA BUTTON ========== */
+        .cta {
+            display: block;
+            width: 100%;
+            background: var(--terracotta);
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            padding: 1rem 2.5rem;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s ease;
+            text-align: center;
+        }
+        .cta:hover {
+            background: var(--terracotta-light);
+            transform: translateY(-1px);
+        }
+        .cta:active { transform: translateY(0); }
+        .cta:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .disclaimer {
+            margin-top: 1.25rem;
+            font-size: 0.82rem;
+            color: var(--brown-light);
+            opacity: 0.5;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        /* ========== FORM VALIDATION ========== */
+        .form-group input:invalid:not(:placeholder-shown),
+        .form-group textarea:invalid:not(:placeholder-shown) {
+            border-color: #c0392b;
+        }
+
+        /* ========== FOOTER ========== */
+        .rodape {
+            background: var(--brown);
+            padding: 2.5rem 0;
+            text-align: center;
+        }
+        .rodape p {
+            color: var(--cream);
+            opacity: 0.5;
+            font-size: 0.85rem;
+        }
+        .rodape a {
+            color: var(--cream);
+            opacity: 0.6;
+            text-decoration: underline;
+            transition: opacity 0.2s;
+        }
+        .rodape a:hover { opacity: 1; }
+
+        /* ========== ANIMATIONS ========== */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .page-content { padding: 3rem 1.5rem 2rem; }
+        }
+        @media (max-width: 480px) {
+            .page-content { padding: 2.5rem 1.25rem 2rem; }
+            .cta { padding: 0.9rem 2rem; font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHH2P9VL"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- ========== HEADER ========== -->
+    <header class="header">
+        <a href="index.html">Artur Andrade &nbsp;|&nbsp; Mentoria Prisma</a>
+    </header>
+
+    <!-- ========== FORM CONTENT ========== -->
+    <main class="page-content fade-in">
+        <h1 class="heading">Você chegou até aqui por um motivo.</h1>
+        <p class="sub-text">Preencha o formulário abaixo para entrar na lista de espera do Prisma. As vagas são limitadas e individuais. Suas respostas me ajudam a entender se o Prisma faz sentido para você — e a preparar a nossa primeira conversa.</p>
+
+        <form id="prisma-form" novalidate>
+            <div class="form-group">
+                <label for="nome">Nome Completo <span class="required">*</span></label>
+                <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail Profissional <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required placeholder="seu@email.com">
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
+                <input type="tel" id="telefone" name="telefone" required placeholder="para contato rápido">
+            </div>
+
+            <div class="form-group">
+                <label for="desafios">Quais são seus principais desafios hoje?</label>
+                <textarea id="desafios" name="desafios" maxlength="500" placeholder="Conte brevemente o que está enfrentando..."></textarea>
+                <div class="char-count"><span id="desafios-count">0</span>/500</div>
+            </div>
+
+            <div class="form-group">
+                <label for="expectativas">O que você espera alcançar com a mentoria?</label>
+                <textarea id="expectativas" name="expectativas" maxlength="500" placeholder="O que seria um resultado significativo para você?"></textarea>
+                <div class="char-count"><span id="expectativas-count">0</span>/500</div>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="aceite" name="aceite" required>
+                <label for="aceite">Aceito receber comunicações relacionadas ao Prisma. <span style="color: var(--terracotta);">*</span></label>
+            </div>
+
+            <button type="submit" class="cta" id="submit-btn">Entrar na lista de espera</button>
+
+            <p class="disclaimer">Seus dados são confidenciais. Isso não é um compromisso de compra — é o primeiro passo de uma conversa.</p>
+        </form>
+    </main>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="rodape">
+        <div style="max-width: 820px; margin: 0 auto; padding: 0 2rem;">
+            <p>Artur Andrade &nbsp;|&nbsp; Mentoria Prisma</p>
+            <p style="margin-top: 0.5rem;">
+                <a href="privacidade.html">Política de Privacidade</a> &nbsp;&middot;&nbsp; <a href="termos.html">Termos de Uso</a>
+            </p>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // Fade-in animation
+        var observer = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
+
+        // Character counters
+        ['desafios', 'expectativas'].forEach(function(id) {
+            var textarea = document.getElementById(id);
+            var counter = document.getElementById(id + '-count');
+            textarea.addEventListener('input', function() {
+                counter.textContent = this.value.length;
+            });
+        });
+
+        // Form submission via N8N webhook
+        document.getElementById('prisma-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Validate required fields
+            var nome = document.getElementById('nome');
+            var email = document.getElementById('email');
+            var telefone = document.getElementById('telefone');
+            var aceite = document.getElementById('aceite');
+
+            if (!nome.value.trim() || !email.value.trim() || !telefone.value.trim()) {
+                alert('Por favor, preencha todos os campos obrigatórios.');
+                return;
+            }
+
+            if (!email.validity.valid) {
+                alert('Por favor, insira um e-mail válido.');
+                return;
+            }
+
+            if (!aceite.checked) {
+                alert('Você precisa aceitar receber comunicações para continuar.');
+                return;
+            }
+
+            // Disable button
+            var btn = document.getElementById('submit-btn');
+            btn.disabled = true;
+            btn.textContent = 'Enviando...';
+
+            // Prepare data
+            var data = {
+                nome: nome.value.trim(),
+                email: email.value.trim(),
+                telefone: telefone.value.trim(),
+                desafios: document.getElementById('desafios').value.trim(),
+                expectativas: document.getElementById('expectativas').value.trim(),
+                aceite_comunicacoes: true,
+                data_envio: new Date().toISOString(),
+                origem: 'lista-espera'
+            };
+
+            // Send to N8N webhook
+            fetch('https://n8n.arturandrade.com.br/webhook/lista-espera', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            })
+            .then(function(response) {
+                if (response.ok) {
+                    window.location.href = 'obrigado.html';
+                } else {
+                    throw new Error('Erro no servidor');
+                }
+            })
+            .catch(function(error) {
+                console.error('Erro:', error);
+                // Redirect anyway to not block the user — data can be recovered
+                window.location.href = 'obrigado.html';
+            });
+        });
+    </script>
+</body>
+</html>
