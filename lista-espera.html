@@ -251,7 +251,7 @@
     <!-- ========== FORM CONTENT ========== -->
     <main class="page-content fade-in">
         <h1 class="heading">Você chegou até aqui por um motivo.</h1>
-        <p class="sub-text">Preencha o formulário abaixo para entrar na lista de espera do Prisma. As vagas são limitadas. Suas respostas me ajudam a entender se o Prisma faz sentido para você — e a preparar a nossa primeira conversa.</p>
+        <p class="sub-text">Preencha o formulário abaixo para entrar na lista de espera do Prisma. As vagas são limitadas e individuais. Suas respostas me ajudam a entender se o Prisma faz sentido para você — e a preparar a nossa primeira conversa.</p>
 
         <form id="prisma-form" novalidate>
             <div class="form-group">
@@ -267,11 +267,6 @@
             <div class="form-group">
                 <label for="telefone">Telefone / WhatsApp <span class="required">*</span></label>
                 <input type="tel" id="telefone" name="telefone" required placeholder="para contato rápido">
-            </div>
-
-            <div class="form-group">
-                <label for="cargo">Cargo Atual <span class="required">*</span></label>
-                <input type="text" id="cargo" name="cargo" required placeholder="ex: Diretor, Gerente, Executivo Sênior">
             </div>
 
             <div class="form-group">
@@ -334,10 +329,9 @@
             var nome = document.getElementById('nome');
             var email = document.getElementById('email');
             var telefone = document.getElementById('telefone');
-            var cargo = document.getElementById('cargo');
             var aceite = document.getElementById('aceite');
 
-            if (!nome.value.trim() || !email.value.trim() || !telefone.value.trim() || !cargo.value.trim()) {
+            if (!nome.value.trim() || !email.value.trim() || !telefone.value.trim()) {
                 alert('Por favor, preencha todos os campos obrigatórios.');
                 return;
             }
@@ -362,7 +356,6 @@
                 nome: nome.value.trim(),
                 email: email.value.trim(),
                 telefone: telefone.value.trim(),
-                cargo: cargo.value.trim(),
                 desafios: document.getElementById('desafios').value.trim(),
                 expectativas: document.getElementById('expectativas').value.trim(),
                 aceite_comunicacoes: true,
@@ -371,7 +364,7 @@
             };
 
             // Send to N8N webhook
-            fetch('https://webhook.tikitim.cloud/webhook/lista-espera', {
+            fetch('https://n8n.arturandrade.com.br/webhook/lista-espera', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(data)
