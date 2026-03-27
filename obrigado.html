@@ -1,212 +1,279 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pronto | Mentoria Prisma</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pronto | Mentoria Prisma</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MHH2P9VL');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background-color: #5c6b54; color: #fdf8f3; }
 
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-MHH2P9VL');</script>
-    <!-- End Google Tag Manager -->
+    :root {
+      --terracotta: #c67b5c;
+      --warm-beige: #f5e6d3;
+      --dark-brown: #4a3728;
+      --olive: #5c6b54;
+      --cream: #fdf8f3;
+      --terracotta-light: #d4956e;
+      --brown-light: #6b5647;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        /* ========== RESET & BASE ========== */
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        html { font-size: 16px; }
-        body {
-            font-family: 'Inter', sans-serif;
-            color: #4a3728;
-            background: #fdf8f3;
-            line-height: 1.7;
-            -webkit-font-smoothing: antialiased;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-        a { text-decoration: none; color: inherit; }
+    html { -webkit-font-smoothing: antialiased; }
 
-        /* ========== COLOR TOKENS ========== */
-        :root {
-            --terracotta: #c67b5c;
-            --cream: #f5e6d3;
-            --brown: #4a3728;
-            --sage: #5c6b54;
-            --ivory: #fdf8f3;
-            --terracotta-light: #d4967d;
-            --brown-light: #6b5a4e;
-        }
+    body {
+      background-color: var(--cream);
+      color: var(--dark-brown);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
 
-        /* ========== MAIN CONTENT ========== */
-        .page-content {
-            max-width: 680px;
-            margin: 0 auto;
-            padding: 5rem 2rem 4rem;
-            flex: 1;
-        }
+    a { text-decoration: none; color: inherit; }
 
-        .heading {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-weight: 500;
-            line-height: 1.25;
-            color: var(--brown);
-            font-size: clamp(2rem, 4.5vw, 2.8rem);
-            margin-bottom: 2rem;
-        }
+    /* ---- HEADER ---- */
+    .header {
+      padding: 1.5rem 2rem;
+      border-bottom: 1px solid rgba(74, 55, 40, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-        .body-text {
-            font-size: 1.05rem;
-            color: var(--brown-light);
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
+    .header__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
 
-        .divider {
-            width: 48px;
-            height: 2px;
-            background: var(--terracotta);
-            margin: 2.5rem 0;
-            opacity: 0.5;
-        }
+    .header__logo img { height: 32px; width: auto; }
 
-        /* ========== EXPECTATION CARDS ========== */
-        .expect-grid {
-            display: grid;
-            gap: 1.25rem;
-            margin: 2.5rem 0;
-        }
-        .expect-card {
-            background: var(--cream);
-            border-radius: 8px;
-            padding: 1.5rem 1.75rem;
-            border-left: 3px solid var(--terracotta);
-        }
-        .expect-card h3 {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: var(--terracotta);
-            margin-bottom: 0.5rem;
-        }
-        .expect-card p {
-            font-size: 1rem;
-            color: var(--brown-light);
-            line-height: 1.6;
-        }
+    .header__logo-text {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--dark-brown);
+    }
 
-        /* ========== CLOSING ========== */
-        .closing {
-            margin-top: 3rem;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(74,55,40,0.1);
-        }
-        .closing .body-text {
-            font-style: italic;
-            color: var(--sage);
-            font-weight: 500;
-        }
-        .signature {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.2rem;
-            color: var(--brown);
-            font-style: italic;
-            margin-top: 1rem;
-        }
+    /* ---- MAIN ---- */
+    .page-content {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 5rem 2rem 4rem;
+      flex: 1;
+      width: 100%;
+    }
 
-        /* ========== FOOTER ========== */
-        .rodape {
-            background: var(--brown);
-            padding: 2.5rem 0;
-            text-align: center;
-        }
-        .rodape p {
-            color: var(--cream);
-            opacity: 0.5;
-            font-size: 0.85rem;
-        }
+    .check-mark {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: rgba(92, 107, 84, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
 
-        /* ========== ANIMATIONS ========== */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .page-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--olive);
+      margin-bottom: 1.25rem;
+    }
 
-        /* ========== RESPONSIVE ========== */
-        @media (max-width: 768px) {
-            .page-content { padding: 3.5rem 1.5rem 3rem; }
-        }
-        @media (max-width: 480px) {
-            .page-content { padding: 3rem 1.25rem 2.5rem; }
-        }
-    </style>
+    .page-heading {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--dark-brown);
+      margin-bottom: 1.5rem;
+    }
+
+    .page-text {
+      font-size: 1.05rem;
+      color: var(--brown-light);
+      margin-bottom: 1.25rem;
+      line-height: 1.8;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: rgba(74, 55, 40, 0.2);
+      margin: 2.5rem 0;
+    }
+
+    /* ---- CARDS ---- */
+    .cards {
+      display: grid;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .card {
+      padding: 1.5rem 1.75rem;
+      background: var(--warm-beige);
+      border-left: 2px solid var(--terracotta);
+    }
+
+    .card__label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 0.5rem;
+    }
+
+    .card__text {
+      font-size: 0.95rem;
+      color: var(--brown-light);
+      line-height: 1.6;
+    }
+
+    /* ---- CLOSING ---- */
+    .closing {
+      margin-top: 2.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(74, 55, 40, 0.1);
+    }
+
+    .closing p {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-style: italic;
+      color: var(--brown-light);
+      line-height: 1.5;
+      margin-bottom: 1rem;
+    }
+
+    .signature {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      color: var(--dark-brown);
+      font-style: italic;
+    }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      background: var(--dark-brown);
+      padding: 2rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer__copy {
+      font-size: 0.78rem;
+      color: rgba(253, 248, 243, 0.4);
+    }
+
+    .footer__logo img { height: 26px; opacity: 0.35; }
+
+    /* ---- REVEAL ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+
+    @media (max-width: 640px) {
+      .page-content { padding: 3.5rem 1.25rem 3rem; }
+      .header { padding: 1.25rem; }
+      .footer { flex-direction: column; gap: 1rem; text-align: center; padding: 1.5rem 1.25rem; }
+    }
+  </style>
 </head>
 <body>
-    <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHH2P9VL"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- End Google Tag Manager (noscript) -->
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHH2P9VL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-    <!-- ========== CONTENT ========== -->
-    <main class="page-content fade-in">
-        <h1 class="heading">Pronto. Você deu o primeiro passo.</h1>
+  <header class="header">
+    <a href="index.html" class="header__logo">
+      <img src="Brand Assets/Prism Brown Logo Tr.png" alt="Prisma">
+      <span class="header__logo-text">Prisma</span>
+    </a>
+  </header>
 
-        <p class="body-text">Recebi suas informações. Nos próximos dias, minha equipe vai entrar em contato para agendar uma conversa breve de 15 minutos comigo.</p>
-        <p class="body-text">Não é uma sessão de vendas. É uma conversa real para entender o que você está vivendo, o que está buscando e se o Prisma faz sentido para o seu momento.</p>
+  <main class="page-content">
+    <div class="check-mark reveal">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#5c6b54" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"/>
+      </svg>
+    </div>
 
-        <div class="divider"></div>
+    <p class="page-label reveal">Recebido</p>
+    <h1 class="page-heading reveal reveal-delay-1">Pronto. Você deu o primeiro passo.</h1>
 
-        <!-- ========== O QUE ESPERAR ========== -->
-        <div class="expect-grid">
-            <div class="expect-card">
-                <h3>Duração</h3>
-                <p>15 minutos, por telefone ou vídeo.</p>
-            </div>
-            <div class="expect-card">
-                <h3>O que vamos conversar</h3>
-                <p>Seu momento atual, seus desafios e o que te trouxe até aqui.</p>
-            </div>
-            <div class="expect-card">
-                <h3>O que não vai acontecer</h3>
-                <p>Ninguém vai te pressionar a fechar nada. Se não fizer sentido, eu mesmo vou te dizer.</p>
-            </div>
-        </div>
+    <p class="page-text reveal reveal-delay-2">Recebi suas informações. Nos próximos dias, eu vou entrar em contato diretamente com você para agendar uma conversa breve de 15 minutos.</p>
+    <p class="page-text reveal reveal-delay-2">Não é uma sessão de vendas. É uma conversa real para entender o que você está vivendo, o que está buscando e se o Prisma faz sentido para o seu momento.</p>
 
-        <!-- ========== FECHAMENTO ========== -->
-        <div class="closing">
-            <p class="body-text">A maioria dos líderes que me procuram já sabia que precisava de algo diferente. Só faltava o primeiro movimento. Você acabou de fazer o seu.</p>
-            <p class="signature">— Artur Andrade</p>
-        </div>
-    </main>
+    <div class="divider reveal reveal-delay-2"></div>
 
-    <!-- ========== FOOTER ========== -->
-    <footer class="rodape">
-        <div style="max-width: 820px; margin: 0 auto; padding: 0 2rem;">
-            <p>Artur Andrade &nbsp;|&nbsp; Mentoria Prisma</p>
-        </div>
-    </footer>
+    <div class="cards reveal reveal-delay-2">
+      <div class="card">
+        <p class="card__label">Duração</p>
+        <p class="card__text">15 minutos, por telefone ou vídeo.</p>
+      </div>
+      <div class="card">
+        <p class="card__label">O que vamos conversar</p>
+        <p class="card__text">Seu momento atual, seus desafios e o que te trouxe até aqui.</p>
+      </div>
+      <div class="card">
+        <p class="card__label">O que não vai acontecer</p>
+        <p class="card__text">Ninguém vai te pressionar a fechar nada. Se não fizer sentido, eu mesmo vou te dizer.</p>
+      </div>
+    </div>
 
-    <!-- ========== JAVASCRIPT ========== -->
-    <script>
-        // Fade-in animation
-        var observer = new IntersectionObserver(function(entries) {
-            entries.forEach(function(entry) {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.fade-in').forEach(function(el) { observer.observe(el); });
-    </script>
+    <div class="closing reveal reveal-delay-3">
+      <p>A maioria dos líderes que me procuram já sabia que precisava de algo diferente. Só faltava o primeiro movimento. Você acabou de fazer o seu.</p>
+      <span class="signature">— Artur Andrade</span>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <span class="footer__copy">&copy; 2026 Artur Andrade. Todos os direitos reservados.</span>
+    <div class="footer__logo">
+      <img src="Brand Assets/Prism Beige logo Tr.png" alt="Prisma">
+    </div>
+  </footer>
+
+  <script>
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  </script>
 </body>
 </html>

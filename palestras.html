@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palestras | Artur Andrade</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MHH2P9VL');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    ::selection { background-color: #5c6b54; color: #fdf8f3; }
+
+    :root {
+      --terracotta: #c67b5c;
+      --warm-beige: #f5e6d3;
+      --dark-brown: #4a3728;
+      --olive: #5c6b54;
+      --cream: #fdf8f3;
+      --terracotta-light: #d4956e;
+      --terracotta-dark: #a8624a;
+      --brown-light: #6b5647;
+      --olive-light: #7a8b70;
+      --font-display: 'Cormorant Garamond', serif;
+      --font-body: 'DM Sans', sans-serif;
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+      --space-2xl: 4.5rem;
+      --space-3xl: 6rem;
+    }
+
+    html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--cream);
+      color: var(--dark-brown);
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      letter-spacing: -0.01em;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* ---- NAV ---- */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: var(--space-md) var(--space-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .nav.scrolled {
+      background-color: rgba(253, 248, 243, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 1px 0 rgba(74, 55, 40, 0.08);
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      color: var(--dark-brown);
+    }
+
+    .nav__logo img { height: 36px; width: auto; }
+
+    .nav__logo-text {
+      font-family: var(--font-display);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav__actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .nav__cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--dark-brown);
+      padding: 0.6rem 1.5rem;
+      border: 1px solid var(--dark-brown);
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    }
+
+    .nav__cta:hover { background-color: var(--dark-brown); color: var(--cream); }
+    .nav__cta:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+    .nav__cta:active { transform: scale(0.97); }
+
+    .nav__cta--ghost {
+      border-color: rgba(74, 55, 40, 0.4);
+      background: rgba(198, 123, 92, 0.08);
+      color: var(--terracotta-dark);
+    }
+
+    .nav__cta--ghost:hover {
+      background-color: var(--terracotta);
+      border-color: var(--terracotta);
+      color: var(--cream);
+    }
+
+    /* ---- LAYOUT ---- */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    .container--narrow { max-width: 860px; }
+
+    .divider {
+      border: none;
+      border-top: 1px solid rgba(74, 55, 40, 0.2);
+      margin: 0;
+    }
+
+    .section { padding: var(--space-2xl) 0; }
+
+    .section--beige { background-color: var(--warm-beige); }
+    .section--brown { background-color: var(--dark-brown); color: var(--cream); }
+
+    .section__label {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .section__label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: rgba(74, 55, 40, 0.15);
+      max-width: 120px;
+    }
+
+    .section--brown .section__label { color: var(--terracotta-light); }
+
+    .section__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1rem + 3.2vw, 3.5rem);
+      font-weight: 400;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-lg);
+      max-width: 22ch;
+    }
+
+    .section__title em { font-style: italic; color: var(--terracotta); }
+    .section--brown .section__title em { color: var(--terracotta-light); }
+
+    .section__body {
+      font-size: 1.125rem;
+      line-height: 1.75;
+      color: var(--brown-light);
+      max-width: 60ch;
+    }
+
+    .section--brown .section__body { color: rgba(253, 248, 243, 0.75); }
+    .section__body p + p { margin-top: var(--space-md); }
+
+    /* ---- HERO ---- */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: 7rem;
+      padding-bottom: var(--space-xl);
+    }
+
+    .hero__headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 1rem + 6vw, 6rem);
+      font-weight: 400;
+      line-height: 1.04;
+      letter-spacing: -0.045em;
+      color: var(--dark-brown);
+      max-width: 18ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__headline em { font-style: italic; color: var(--terracotta); }
+
+    .hero__sub {
+      font-family: var(--font-display);
+      font-size: clamp(1.15rem, 0.9rem + 0.8vw, 1.5rem);
+      font-weight: 400;
+      line-height: 1.5;
+      color: var(--brown-light);
+      max-width: 52ch;
+      margin-bottom: var(--space-lg);
+    }
+
+    .hero__bottom {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      flex-wrap: wrap;
+    }
+
+    /* ---- BUTTONS ---- */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      padding: 1rem 2.2rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease, background-color 0.3s ease;
+    }
+
+    .btn:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 3px; }
+    .btn:active { transform: scale(0.97); }
+
+    .btn--primary {
+      background-color: var(--terracotta);
+      color: var(--cream);
+      box-shadow: 0 2px 8px rgba(198, 123, 92, 0.25), 0 1px 2px rgba(198, 123, 92, 0.1);
+    }
+
+    .btn--primary:hover {
+      background-color: var(--terracotta-light);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(198, 123, 92, 0.3);
+    }
+
+    /* ---- CONTEXT ---- */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+
+    /* ---- EXPERIENCE ---- */
+    .experience-items {
+      margin-top: var(--space-xl);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .experience-item {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: var(--space-md);
+      padding: var(--space-lg) 0;
+      border-bottom: 1px solid rgba(74, 55, 40, 0.1);
+      align-items: start;
+    }
+
+    .experience-item:first-child { padding-top: 0; }
+
+    .experience-item__num {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      color: var(--terracotta);
+      opacity: 0.5;
+      line-height: 1.2;
+      margin-top: 0.15rem;
+    }
+
+    .experience-item__title {
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--dark-brown);
+      margin-bottom: 0.4rem;
+      line-height: 1.25;
+    }
+
+    .experience-item__text {
+      font-size: 0.95rem;
+      line-height: 1.65;
+      color: var(--brown-light);
+    }
+
+    /* ---- FORMATS ---- */
+    .formats {
+      display: flex;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+      flex-wrap: wrap;
+    }
+
+    .format-tag {
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border: 1px solid rgba(74, 55, 40, 0.2);
+      color: var(--brown-light);
+    }
+
+    /* ---- AUTHORITY ---- */
+    .authority-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: var(--space-3xl);
+      align-items: start;
+    }
+
+    .authority__image-wrapper {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+    }
+
+    .authority__image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(0.1) saturate(0.9);
+    }
+
+    .authority__image-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(74, 55, 40, 0.3), transparent 50%);
+      mix-blend-mode: multiply;
+    }
+
+    /* ---- FOR WHOM ---- */
+    .contexts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+
+    .context-item {
+      padding: var(--space-md);
+      border: 1px solid rgba(74, 55, 40, 0.12);
+      background: rgba(253, 248, 243, 0.6);
+    }
+
+    .context-item__icon {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--olive);
+      margin-bottom: var(--space-sm);
+    }
+
+    .context-item__text {
+      font-size: 0.95rem;
+      color: var(--brown-light);
+      line-height: 1.6;
+    }
+
+    /* ---- FAQ ---- */
+    .faq { margin-top: var(--space-xl); }
+
+    .faq__item { border-bottom: 1px solid rgba(74, 55, 40, 0.12); }
+
+    .faq__question {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--space-md) 0;
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-size: 1.3rem;
+      font-weight: 500;
+      color: var(--dark-brown);
+      text-align: left;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      transition: color 0.2s ease;
+    }
+
+    .faq__question:hover { color: var(--terracotta); }
+    .faq__question:focus-visible { outline: 2px solid var(--terracotta); outline-offset: 2px; }
+
+    .faq__icon {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      margin-left: var(--space-md);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .faq__item.open .faq__icon { transform: rotate(45deg); }
+
+    .faq__answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease;
+    }
+
+    .faq__item.open .faq__answer {
+      max-height: 200px;
+      padding-bottom: var(--space-lg);
+    }
+
+    .faq__answer p {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--brown-light);
+      max-width: 60ch;
+    }
+
+    /* ---- FOOTER CTA ---- */
+    .footer-cta {
+      padding: var(--space-3xl) 0;
+      background-color: var(--dark-brown);
+      color: var(--cream);
+    }
+
+    .footer-cta__headline {
+      font-family: var(--font-display);
+      font-size: clamp(2.2rem, 1rem + 3.8vw, 4rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+      max-width: 18ch;
+      margin-bottom: var(--space-xl);
+    }
+
+    .footer-cta__headline em { font-style: italic; color: var(--terracotta-light); }
+
+    .footer-cta__text {
+      font-size: 1.05rem;
+      color: rgba(253, 248, 243, 0.7);
+      max-width: 48ch;
+      margin-bottom: var(--space-lg);
+      line-height: 1.7;
+    }
+
+    .footer-cta .btn--primary { background-color: var(--terracotta); }
+    .footer-cta .btn--primary:hover { background-color: var(--terracotta-light); }
+
+    /* ---- FOOTER ---- */
+    .footer {
+      padding: var(--space-lg) 0;
+      background-color: var(--dark-brown);
+      border-top: 1px solid rgba(253, 248, 243, 0.08);
+    }
+
+    .footer__inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: rgba(253, 248, 243, 0.4);
+    }
+
+    .footer__copy a { color: rgba(253, 248, 243, 0.4); text-decoration: underline; }
+    .footer__copy a:hover { color: rgba(253, 248, 243, 0.7); }
+
+    .footer__logo img { height: 28px; opacity: 0.4; }
+
+    /* ---- REVEAL ---- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+
+    /* ---- RESPONSIVE ---- */
+    @media (max-width: 1024px) {
+      .two-col { grid-template-columns: 1fr; gap: var(--space-lg); }
+      .authority-grid { grid-template-columns: 1fr; gap: var(--space-xl); }
+      .authority__image-wrapper { max-width: 400px; aspect-ratio: 1; }
+      .contexts { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .container { padding: 0 var(--space-md); }
+      .section { padding: var(--space-2xl) 0; }
+      .nav { padding: var(--space-sm) var(--space-md); }
+      .nav__cta--ghost { display: none; }
+      .nav__cta span { display: none; }
+      .hero { padding-top: 7rem; }
+      .contexts { grid-template-columns: 1fr; }
+      .footer-cta { padding: var(--space-2xl) 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MHH2P9VL"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="Brand Assets/Prism Brown Logo Tr.png" alt="Prisma">
+      <span class="nav__logo-text">Prisma</span>
+    </a>
+    <div class="nav__actions">
+      <a href="index.html" class="nav__cta nav__cta--ghost">
+        <span>Mentoria</span>
+      </a>
+      <a href="lista-espera.html" class="nav__cta">
+        <span>Lista de Espera</span>
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M1 13L13 1M13 1H4M13 1V10"/>
+        </svg>
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <p class="section__label reveal">Palestras Corporativas</p>
+      <h1 class="hero__headline reveal reveal-delay-1">
+        Quanto custa para sua empresa um líder que funciona no <em>automático?</em>
+      </h1>
+      <p class="hero__sub reveal reveal-delay-2">
+        Seus melhores líderes estão entregando resultados, e pedindo demissão por dentro. Esta palestra mostra por que isso acontece e o que fazer antes que o custo apareça no balanço.
+      </p>
+      <div class="hero__bottom reveal reveal-delay-3">
+        <a href="https://wa.me/5527988953489?text=Quero%20saber%20sobre%20a%20palestra%20para%20a%20minha%20empresa" class="btn btn--primary" target="_blank" rel="noopener">
+          Consultar disponibilidade via WhatsApp
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 13L13 1M13 1H4M13 1V10"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider"></div>
+
+  <!-- CONTEXT -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div>
+          <p class="section__label reveal">O que não aparece no relatório</p>
+          <h2 class="section__title reveal reveal-delay-1">
+            O problema invisível de <em>alta performance.</em>
+          </h2>
+        </div>
+        <div class="section__body reveal reveal-delay-2">
+          <p>O líder bate meta, responde e-mails na hora, resolve crises sem reclamar. Por fora, é o profissional que toda empresa quer. Por dentro, está funcionando no automático — desconectado, reativo, esgotado.</p>
+          <p>Isso tem custo. Aparece em decisões ruins tomadas por cansaço. Em talentos que saem sem dar sinal. Em reuniões que consomem horas e não produzem nada. Em uma cultura que recompensa presença física e ignora presença real.</p>
+          <p>A palestra do Artur Andrade trata a causa, não apenas o sintoma.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section--beige">
+    <div class="container container--narrow">
+      <p class="section__label reveal">A Palestra</p>
+      <h2 class="section__title reveal reveal-delay-1">
+        O Custo Invisível do <em>Piloto Automático</em>
+      </h2>
+      <div class="section__body reveal reveal-delay-2">
+        <p>Uma conversa estratégica sobre o que acontece quando líderes de alta performance perdem o que mais importa sem perceber — e o caminho de volta.</p>
+      </div>
+
+      <div class="experience-items">
+        <div class="experience-item reveal">
+          <span class="experience-item__num">01</span>
+          <div>
+            <h3 class="experience-item__title">O espelho do automático</h3>
+            <p class="experience-item__text">Um olhar honesto para o modo de operação que a maioria dos líderes normaliza — e os sinais claros de que a reatividade assumiu o controle.</p>
+          </div>
+        </div>
+        <div class="experience-item reveal">
+          <span class="experience-item__num">02</span>
+          <div>
+            <h3 class="experience-item__title">A jornada real</h3>
+            <p class="experience-item__text">A história de quem passou 13 anos em posições de liderança estratégica internacional, tentou mudar tudo ao redor e descobriu que o sistema operacional interno era o problema.</p>
+          </div>
+        </div>
+        <div class="experience-item reveal">
+          <span class="experience-item__num">03</span>
+          <div>
+            <h3 class="experience-item__title">O conceito de produtividade consciente</h3>
+            <p class="experience-item__text">Por que nenhuma técnica de gestão de tempo resolve quando a energia está sendo drenada por padrões invisíveis.</p>
+          </div>
+        </div>
+        <div class="experience-item reveal">
+          <span class="experience-item__num">04</span>
+          <div>
+            <h3 class="experience-item__title">O exercício dos 5 minutos</h3>
+            <p class="experience-item__text">Uma prática individual e imediata que revela o custo real que cada pessoa na sala está pagando hoje.</p>
+          </div>
+        </div>
+        <div class="experience-item reveal">
+          <span class="experience-item__num">05</span>
+          <div>
+            <h3 class="experience-item__title">As 3 perguntas fundamentais</h3>
+            <p class="experience-item__text">O que cada líder leva consigo para mudar a forma como encara a próxima decisão, já na segunda-feira.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="formats reveal">
+        <span class="format-tag">Palestra padrão — 50 min</span>
+        <span class="format-tag">Versão compacta — 30 min</span>
+        <span class="format-tag">Presencial</span>
+        <span class="format-tag">Online</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider"></div>
+
+  <!-- AUTHORITY -->
+  <section class="section">
+    <div class="container">
+      <div class="authority-grid">
+        <div class="authority__image-wrapper reveal">
+          <img src="Brand Assets/Artur Andrade.png" alt="Artur Andrade">
+          <div class="authority__image-overlay"></div>
+        </div>
+        <div>
+          <p class="section__label reveal">Quem fala</p>
+          <h2 class="section__title reveal reveal-delay-1">
+            Eu não estudei crise de liderança. Eu <em>vivi.</em>
+          </h2>
+          <div class="section__body reveal reveal-delay-2">
+            <p>13 anos no mundo corporativo. Liderança estratégica no Brasil, México e região Américas. Formação na HEC Paris e MBA pela FGV.</p>
+            <p>Artur estava onde seus líderes estão: entregando resultados e subindo de posição, até perceber que o sonho tinha virado rotina anestesiada. Tentou mudar de cargo, de área e de país, mas o padrão sempre voltava. Só quando decidiu olhar para dentro e documentar a travessia é que algo mudou de verdade.</p>
+            <p>Dessa documentação nasceu o Método Prisma, que hoje fundamenta suas mentorias e esta palestra. Artur fala como quem já esteve na sala de reunião, não como quem leu sobre ela.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOR WHOM -->
+  <section class="section section--beige">
+    <div class="container container--narrow">
+      <p class="section__label reveal">Contextos recomendados</p>
+      <h2 class="section__title reveal reveal-delay-1">
+        Esta não é uma palestra motivacional.<br><em>É estratégia.</em>
+      </h2>
+      <div class="section__body reveal reveal-delay-2">
+        <p>Desenhada para gerar pensamento crítico e impacto real na cultura e no comportamento do time.</p>
+      </div>
+
+      <div class="contexts">
+        <div class="context-item reveal">
+          <div class="context-item__icon"></div>
+          <p class="context-item__text">Eventos e Convenções de Liderança</p>
+        </div>
+        <div class="context-item reveal">
+          <div class="context-item__icon"></div>
+          <p class="context-item__text">Off-sites executivos e Planejamento Estratégico</p>
+        </div>
+        <div class="context-item reveal">
+          <div class="context-item__icon"></div>
+          <p class="context-item__text">Programas de Saúde Mental e Wellbeing Corporativo</p>
+        </div>
+        <div class="context-item reveal">
+          <div class="context-item__icon"></div>
+          <p class="context-item__text">Lideranças e gestores de todos os níveis e times de alta performance</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container"><hr class="divider"></div>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container container--narrow">
+      <p class="section__label reveal">Perguntas frequentes</p>
+      <h2 class="section__title reveal reveal-delay-1" style="max-width: 24ch;">
+        O que você provavelmente quer <em>saber.</em>
+      </h2>
+
+      <div class="faq reveal reveal-delay-2">
+        <div class="faq__item">
+          <button class="faq__question" onclick="this.parentElement.classList.toggle('open')">
+            A palestra serve para quais níveis?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>Lideranças e gestores de todos os níveis e times de alta performance. O conteúdo ressoa especialmente com profissionais que já têm resultados sólidos e sentem que algo precisa mudar na forma como operam.</p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="this.parentElement.classList.toggle('open')">
+            Existe versão online?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>Sim, o formato é adaptado para manter a profundidade da experiência presencial no ambiente digital.</p>
+          </div>
+        </div>
+        <div class="faq__item">
+          <button class="faq__question" onclick="this.parentElement.classList.toggle('open')">
+            É palestra motivacional?
+            <svg class="faq__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </button>
+          <div class="faq__answer">
+            <p>Não. É uma conversa reflexiva baseada em vivência real e método estruturado. O tom é de executivo para executivo. Direto, sóbrio e reflexivo.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER CTA -->
+  <footer class="footer-cta">
+    <div class="container">
+      <h2 class="footer-cta__headline reveal">
+        Leve esta conversa para a sua <em>empresa.</em>
+      </h2>
+      <p class="footer-cta__text reveal reveal-delay-1">
+        Fale com o Artur para verificar disponibilidade e discutir o formato ideal para o seu evento ou programa.
+      </p>
+      <div class="reveal reveal-delay-2">
+        <a href="https://wa.me/5527988953489?text=Quero%20saber%20sobre%20a%20palestra%20para%20a%20minha%20empresa" class="btn btn--primary" target="_blank" rel="noopener">
+          Falar pelo WhatsApp
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 13L13 1M13 1H4M13 1V10"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer" style="margin-top: 4rem;">
+      <div class="container">
+        <div class="footer__inner">
+          <span class="footer__copy">&copy; 2026 Artur Andrade. Todos os direitos reservados. &nbsp;·&nbsp; <a href="privacidade.html">Privacidade</a> &nbsp;·&nbsp; <a href="termos.html">Termos</a></span>
+          <div class="footer__logo">
+            <img src="Brand Assets/Prism Beige logo Tr.png" alt="Prisma">
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      nav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Reveal
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+  </script>
+</body>
+</html>
